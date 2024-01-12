@@ -1,5 +1,8 @@
 import { useState ,useEffect} from 'react'
 import axios from 'axios';
+import Pagination from './components/Pagination';
+
+
 
 
 const apikey = "a136e550b28a452c2cd6ef4dbb3c52a2";
@@ -29,11 +32,23 @@ interface Movie {
 }
 
 
+
+
 const  App= () =>{
   const [year,setYear] = useState<string>('2022');
   const[movies,setMovies] = useState<Movie[]>([]);
   const[allmovies,setallMovies] = useState<MovieApiResponse[]>([]);
-  const[page,setPage] = useState<number>(66);
+  const[page,setPage] = useState<number>(1);
+
+  
+ 
+
+
+  
+
+  
+
+
 
   const fetchMovies = async (selectedYear:string ,selectPage:number) => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&year=${selectedYear}&with_watch_monetization_types=flatrate&page=${selectPage}`;
@@ -63,9 +78,16 @@ const  App= () =>{
     // fetchMovies(year,page);
   };
 
+  
+ 
+
+
+
   useEffect(()=>{
       fetchMovies(year,page);
   },[year]);
+
+ 
 
   useEffect(()=>{
     fetchMovies(year,page);
@@ -76,7 +98,8 @@ const  App= () =>{
   }, [movies]);
   useEffect(() => {
     console.log('allMovies after setMovies:', allmovies);
-    console.log('page:', allmovies['page']<number>);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    console.log('page:', (allmovies as any)?.page);
   }, [allmovies]);
   
 
@@ -130,16 +153,23 @@ const  App= () =>{
             <div className='pagecontainer'><a onClick={()=>handlePageChange(4)}>4</a></div>
             <div className='pagecontainer'><a onClick={()=>handlePageChange(5)}>5</a></div>
         </nav> */}
-        <nav className='pagination'>
+
+       
+       
+        {/* <nav className='pagination'>
         {[...Array(10).keys()].map((index) => {
             // const yearValue = 2022 - index;
             return (
               <div className='pagecontainer'><a onClick={()=>handlePageChange(index)}>{index}</a></div>
             );
           })}
-            
-            
-        </nav>
+             
+        </nav> */}
+
+        <Pagination totalPages={15} onPageChange={handlePageChange}/>
+        {/* <PaginationAll totalPages={20} onPageChange={handlePageChange}/>  ไม่ work */}
+
+        
         
 
         

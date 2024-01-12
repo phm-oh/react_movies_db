@@ -74,7 +74,7 @@ img {
 
 .rateContainer {
   margin:30px 2px;
-  z-index: 100;
+  z-index: 10;
   border-radius: 60px;
   background-color: rgb(231, 233, 227);
   position:absolute;
@@ -97,6 +97,7 @@ img {
    
 }
 .pagination{
+  z-index: 100;
   position: fixed;
   bottom: 0;
   display: flex;
@@ -108,6 +109,7 @@ img {
 }
 
 .pagecontainer{
+  
   margin: 5px;
   background-color: black;
   width: 40px;
@@ -117,6 +119,7 @@ img {
   align-content: center;
 }
 .pagecontainer a{
+  z-index: 100;
   font-size: 20px;
   margin: 4px;
   font-weight: 600;
